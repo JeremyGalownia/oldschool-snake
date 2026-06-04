@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Snake</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <div id="game-container">
+            <div class="top">
+                <span id="highscore"></span>
+                <span></span>
+                <span id="score">Score: 0</span>
+            </div>
+            <div id="grid"></div>
+            <div id="menu">
+                <span>Snake</span>
+                <div class="buttons">
+                    <button class="pla" onclick="newGame()"><p>⏵</p></button>
+                    <button class="set" onclick="toggleSettings()">
+                        <p>⚙</p>
+                    </button>
+                </div>
+            </div>
+            <div id="settings">
+                <div class="top">
+                    <h2>Settings</h2>
+                    <button class="close" onclick="toggleSettings()">×</button>
+                </div>
+                <div class="body">
+                    <div class="container">
+                        <div class="shape options">
+                            <p>Board shape:</p>
+                            <div class="container shape">
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="s"
+                                    value="shs"
+                                >
+                                    sqaure
+                                </button>
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="r"
+                                    value="shr"
+                                >
+                                    rectangle
+                                </button>
+                            </div>
+                        </div>
+                        <div class="size options">
+                            <p>Board size:</p>
+                            <div class="container size">
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="s"
+                                    value="sis"
+                                >
+                                    small
+                                </button>
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="m"
+                                    value="sim"
+                                >
+                                    medium
+                                </button>
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="l"
+                                    value="sil"
+                                >
+                                    large
+                                </button>
+                            </div>
+                        </div>
+                        <div class="speed options">
+                            <p>Game speed:</p>
+                            <div class="container speed">
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="s"
+                                    value="sps"
+                                >
+                                    slow
+                                </button>
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="m"
+                                    value="spm"
+                                >
+                                    medium
+                                </button>
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="f"
+                                    value="spf"
+                                >
+                                    fast
+                                </button>
+                            </div>
+                        </div>
+                        <div class="speed options">
+                            <p>Theme:</p>
+                            <div class="container theme">
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="g"
+                                    value="thg"
+                                >
+                                    grayscale
+                                </button>
+                                <button
+                                    onclick="setSetting(this)"
+                                    class="c"
+                                    value="thc"
+                                >
+                                    colorful
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>

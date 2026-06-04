@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+:root {
+    --bg: #1a1a1a;
+    --accent: #3f3f3f;
+    --txt: #f2f2f2;
+    --txt-dim: #bbbbbb;
+    --err: #9f0000;
+    --snake: #497100;
+}
+body,
+html {
+    background: var(--bg);
+    height: 100dvh;
+    width: 100dvw;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    color: var(--txt);
+}
+
+* {
+    font-family: "Press Start 2P";
+    margin: 0;
+    padding: 0;
+    &:focus {
+        outline: none;
+    }
+}
+
+#game-container {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--txt-dim);
+    
+
+    &.g {
+        --err: var(--txt);
+        --snake: var(--txt);
+    }
+
+    #highscore,
+    #score {
+        position: absolute;
+        font-size: 2.3vmin;
+        color: var(--txt-dim);
+        top: -25px;
+    }
+
+    #highscore {
+        left: 2px;
+    }
+
+    #score {
+        right: 0;
+    }
+}
+
+#grid {
+    display: grid;
+    place-content: center;
+    width: auto;
+    gap: 0;
+    height: 80vmin;
+    background: var(--bg);
+
+    .cell,
+    .cell span {
+        flex-grow: 1;
+        aspect-ratio: 1;
+        overflow: hidden;
+        display: grid;
+        place-content: center;
+        color: white;
+    }
+    .cell.fruit span {
+        color: var(--err);
+    }
+    .cell.snake span {
+        color: var(--snake);
+    }
+}
+
+#menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 50%;
+    gap: 3vmin;
+
+    span {
+        margin-left: 0.3em;
+        font-size: 6vmin;
+        letter-spacing: 0.1em;
+        display: block;
+        text-align: center;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 3vmin;
+        align-items: center;
+        width: auto;
+        padding: 1vmin;
+
+        button {
+            display: grid;
+            place-content: center;
+            background: transparent;
+            border: 2px solid var(--txt-dim);
+            color: var(--txt);
+            width: 60px;
+            height: 60px;
+            font-size: 7vmin;
+            cursor: pointer;
+            p {
+                translate: 0 -3px;
+            }
+            &.set p {
+                translate: 0 -5px;
+            }
+            transition:
+                transform 0.1s ease,
+                box-shadow 0.1s ease;
+        }
+    }
+}
+
+#settings {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    
+    opacity: 0;
+    pointer-events: none;
+    background: var(--bg);
+
+    .top {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid var(--txt-dim);
+        position: relative;
+
+        h2 {
+            margin: 0;
+            font-size: 1.6em;
+            letter-spacing: 1px;
+        }
+
+        .close {
+            background: transparent;
+            border: none;
+            position: absolute;
+            right: 10px;
+            color: var(--txt);
+            font-size: 30px;
+            cursor: pointer;
+        }
+    }
+
+    &.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .body {
+        margin-top: 20px;
+        width: calc(100% - 60px);
+        height: calc(100% - 70px);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+
+            .options {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+                justify-content: center;
+
+                p {
+                    width: fit-content;
+                    text-align: left;
+                    font-size: 0.9em;
+                }
+
+                .container {
+                    width: 300px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    margin-left: auto;
+                    gap: 10px;
+
+                    button {
+                        padding: 8px;
+                        width: 100%;
+                        font-size: 0.8em;
+                        text-align: center;
+                        border: 1px solid var(--txt-dim);
+                        background: transparent;
+                        color: var(--txt);
+                        cursor: pointer;
+
+                        &.active {
+                            background: var(--txt);
+                            color: var(--bg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

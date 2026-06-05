@@ -1,129 +1,99 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Snake</title>
-        <link rel="stylesheet" href="./style.css" />
-    </head>
-    <body>
-        <div id="game-container">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="image/png"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAEB0lEQVR4AeyZD1KcMBTGgd6jTk9SvZXazmhnWvVWtifp2HtUzJclyK48CCRvH3++Tp+LIXkPfj8S0m1VzPjz+Pf75dO/b89tvNzWT3uMhsHjy+09YgbKIlpAC92BLqvX56KuL9uYU3kLYxoGZVHcIfAQQgQi9vZGBQTwLfTYzDvtBxEISECMYRgUgAQEP4aw/zwkIMCwv8ehVRSA9R0JDt34cy4BMByS0CsA8P36Prcqxx0RgATP9Kj18MsHAd4WXi6H8/yZi4Bj2ifhSADgw1aumsxzQsBJAONuaysAJwi/i0bnGIyxswzZWwGhgZ/6BMpP9V2o4gXs7ukPd2/1iaXIfZuA8l4ADhjnJRBmgReAdUmr/PXFQ7Hm0OIStvkVlh+1Ikw8SAAvYz8DBnvxpBoBLENVWZZf1Sow8SgBzoBRRLodqvAy0C3D7L0E3HZUnAG5di7uPymKNYfEoRfojEZRwIxcHDKDAAXMgJZzyBkF5Lzs7eSiAGOXFLBUAbl2Lsb3l1xe4pBrd8QZkKwoLQEFpPFLHk0ByQjTElBAGr/k0RSQjDAtAQXM5Jdrd0QBMwXEDhvrRwFjhJTPL05Arn/gKHPLln5xArLd2UoSUYCxKAqgAGMCxuU5A/YkQNrhdNun8uiO7R5PzSP17+bsHkv9p7ZzBkwllrk/BWQGOjXdNgVMpWDYnwIM4aM0BYCCYYgCum/8XMfSV7jddkMWJqVFASZXs8OiFGAsnQIowJiAcXnOgKUK6O5Mch0b3+siy3MGGGvJKMD4TlZafvUCpOUxlw/t/KsXkAu0VR4KsCLf1KWABoTVBwVYkW/qUkADwupjcQKkXYf0lbgVOOl6pOuXrnNxAqQL3Wo7BRibpYBEAanDKSCVYOJ4CkgEmDp8NQKk3YW0G9Ful65nqpDVCJh6Y2vpTwHGpiiAAowJGJfnDKCANALSbkS7Pe2q30dzBryzMDlapwATVDpFKUCHa3RWCohGpdORAnS4RmfdnQDpO6JoYpk7VkVZ/s6ck+liCTj2VWxf9tMhQAE6XKOy1nX9p6r/lz+ierOTCoHq5stPvgNU0I4nvbl4uD8sQe5lMN6dPXISqIvCrzxeQNwylLM8cwUCXoBfhjgLAhP1Tzz9WH5QyAvAAWcBKJw/WgGYBTBz/kvYV0UwDk8/7rwVgF/8CS5FQKESp/BR5EgAGq4//7oqNiBB+s5H+p8yqT+YZAnH1D/gJ8k+CMB5SIAtHDMyEHDwwbQvU68AdIQtSgCJtABDCT4yiwJwMkhAEvzOmEDAPfX1a3UFhkOjBgVgIBIgIAGBNsYAgQY8nnrsLAd6+lOjAnwv9wMSEO5lVUIEwr+sXUF3erN/B28M994EnnawiQUf8r4BAAD//2BTSw4AAAAGSURBVAMA7M2+IPKUMwMAAAAASUVORK5CYII=" />
+</head>
+
+<body>
+    <div id="game-container" class="byebye">
+        <div class="top">
+            <span id="highscore"></span>
+
+            <span id="score">Score: 0</span>
+        </div>
+        <div id="grid"></div>
+        <div id="menu">
+            <span>Snake</span>
+            <div class="buttons">
+                <button class="pla" onclick="newGame()">
+                    <p>⏵</p>
+                </button>
+                <button class="set" onclick="toggleSettings()">
+                    <p>⚙</p>
+                </button>
+            </div>
+        </div>
+        <div id="settings">
             <div class="top">
-                <span id="highscore"></span>
-                <span></span>
-                <span id="score">Score: 0</span>
+                <h2>Settings</h2>
+                <button class="close" onclick="toggleSettings()">×</button>
             </div>
-            <div id="grid"></div>
-            <div id="menu">
-                <span>Snake</span>
-                <div class="buttons">
-                    <button class="pla" onclick="newGame()"><p>⏵</p></button>
-                    <button class="set" onclick="toggleSettings()">
-                        <p>⚙</p>
-                    </button>
-                </div>
-            </div>
-            <div id="settings">
-                <div class="top">
-                    <h2>Settings</h2>
-                    <button class="close" onclick="toggleSettings()">×</button>
-                </div>
-                <div class="body">
-                    <div class="container">
-                        <div class="shape options">
-                            <p>Board shape:</p>
-                            <div class="container shape">
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="s"
-                                    value="shs"
-                                >
-                                    sqaure
-                                </button>
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="r"
-                                    value="shr"
-                                >
-                                    rectangle
-                                </button>
-                            </div>
+            <div class="body">
+                <div class="container">
+                    <div class="shape options">
+                        <p>Board shape:</p>
+                        <div class="container shape">
+                            <button onclick="setSetting(this)" class="s" value="shs">
+                                sqaure
+                            </button>
+                            <button onclick="setSetting(this)" class="r" value="shr">
+                                rectangle
+                            </button>
                         </div>
-                        <div class="size options">
-                            <p>Board size:</p>
-                            <div class="container size">
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="s"
-                                    value="sis"
-                                >
-                                    small
-                                </button>
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="m"
-                                    value="sim"
-                                >
-                                    medium
-                                </button>
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="l"
-                                    value="sil"
-                                >
-                                    large
-                                </button>
-                            </div>
+                    </div>
+                    <div class="size options">
+                        <p>Board size:</p>
+                        <div class="container size">
+                            <button onclick="setSetting(this)" class="s" value="sis">
+                                small
+                            </button>
+                            <button onclick="setSetting(this)" class="m" value="sim">
+                                medium
+                            </button>
+                            <button onclick="setSetting(this)" class="l" value="sil">
+                                large
+                            </button>
                         </div>
-                        <div class="speed options">
-                            <p>Game speed:</p>
-                            <div class="container speed">
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="s"
-                                    value="sps"
-                                >
-                                    slow
-                                </button>
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="m"
-                                    value="spm"
-                                >
-                                    medium
-                                </button>
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="f"
-                                    value="spf"
-                                >
-                                    fast
-                                </button>
-                            </div>
+                    </div>
+                    <div class="speed options">
+                        <p>Game speed:</p>
+                        <div class="container speed">
+                            <button onclick="setSetting(this)" class="s" value="sps">
+                                slow
+                            </button>
+                            <button onclick="setSetting(this)" class="m" value="spm">
+                                medium
+                            </button>
+                            <button onclick="setSetting(this)" class="f" value="spf">
+                                fast
+                            </button>
                         </div>
-                        <div class="speed options">
-                            <p>Theme:</p>
-                            <div class="container theme">
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="g"
-                                    value="thg"
-                                >
-                                    grayscale
-                                </button>
-                                <button
-                                    onclick="setSetting(this)"
-                                    class="c"
-                                    value="thc"
-                                >
-                                    colorful
-                                </button>
-                            </div>
+                    </div>
+                    <div class="speed options">
+                        <p>Theme:</p>
+                        <div class="container theme">
+                            <button onclick="setSetting(this)" class="g" value="thg">
+                                grayscale
+                            </button>
+                            <button onclick="setSetting(this)" class="c" value="thc">
+                                colorful
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="./script.js"></script>
-    </body>
+    </div>
+    <noscript>
+        <p>In order to play my Javascript snake game, you will need to enable Javascript.</p>
+    </noscript>
+    <script src="./script.js"></script>
+</body>
+
 </html>

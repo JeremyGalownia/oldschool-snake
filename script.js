@@ -1,6 +1,7 @@
 const grid = document.getElementById("grid");
 const hsDisp = document.getElementById("highscore");
 const menu = document.getElementById("menu");
+
 const presets = {
   board: {
     s: { s: [9, 9], m: [13, 13], l: [17, 17] },
@@ -8,6 +9,7 @@ const presets = {
   },
   speed: { s: 200, m: 125, f: 50 },
 };
+
 const saveData = JSON.parse(localStorage.getItem("snakesave"));
 
 const keyMap = {
@@ -102,7 +104,7 @@ function endGame() {
     document.querySelector("#menu span").textContent =
       snake.length === boardSize[0] * boardSize[1] ? "YOU WON!" : "GAME OVER";
     const p = document.querySelector("#menu .pla p");
-    // p.style.transform = "translateY(-4px)";
+    p.style.transform = "translateY(-5px)";
     p.textContent = "↻";
     menu.style.opacity = 1;
   }, 800);
@@ -185,6 +187,7 @@ function setSetting(el) {
   else if (type === "si") save.size = val;
   else if (type === "sp") save.speed = val;
   else save.theme = val;
+
   saveSave();
   updateState();
   createGrid();
@@ -256,6 +259,7 @@ function renderGrid() {
 }
 
 window.onload = () => {
+  document.getElementById("game-container").classList.remove("byebye");
   updateState();
   resize();
   board = makeBoard();
@@ -276,8 +280,9 @@ window.onload = () => {
 };
 
 window.onresize = () => resize();
+
 window.onkeydown = (key) => {
-  if (nextDirs.length > 2) nextDirs.shift();
+  if ((nextDirs.length ?? 0) > 2) nextDirs.shift();
   const lastDir = nextDirs.length ? nextDirs[nextDirs.length - 1] : dir;
   const next = keyMap[key.key];
   if (!next) return;

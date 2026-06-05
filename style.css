@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 :root {
     --bg: #1a1a1a;
     --accent: #3f3f3f;
@@ -7,6 +8,7 @@
     --err: #9f0000;
     --snake: #497100;
 }
+
 body,
 html {
     background: var(--bg);
@@ -23,12 +25,30 @@ html {
     font-family: "Press Start 2P";
     margin: 0;
     padding: 0;
+
     &:focus {
         outline: none;
     }
 }
 
+noscript {
+    position: absolute;
+    margin: auto;
+    inset: 20vmin;
+    background: var(--accent);
+    width: fit-content;
+    height: fit-content;
+    padding: 30px;
+    border: 1px solid var(--err);
+    display: grid;
+    place-content: center;
+}
+
 #game-container {
+    &.byebye {
+        display: none;
+    }
+
     position: relative;
     width: fit-content;
     height: fit-content;
@@ -37,7 +57,7 @@ html {
     justify-content: center;
     align-items: center;
     border: 1px solid var(--txt-dim);
-    
+
 
     &.g {
         --err: var(--txt);
@@ -78,9 +98,11 @@ html {
         place-content: center;
         color: white;
     }
+
     .cell.fruit span {
         color: var(--err);
     }
+
     .cell.snake span {
         color: var(--snake);
     }
@@ -122,15 +144,17 @@ html {
             height: 60px;
             font-size: 7vmin;
             cursor: pointer;
+
             p {
                 translate: 0 -3px;
             }
+
             &.set p {
                 translate: 0 -5px;
             }
-            transition:
-                transform 0.1s ease,
-                box-shadow 0.1s ease;
+
+            transition: transform 0.1s ease,
+            box-shadow 0.1s ease;
         }
     }
 }
@@ -143,7 +167,7 @@ html {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    
+
     opacity: 0;
     pointer-events: none;
     background: var(--bg);
@@ -186,7 +210,6 @@ html {
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        
 
         .container {
             display: flex;
